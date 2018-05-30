@@ -1,4 +1,4 @@
-# Social Network
+# Social Network Application
 
 A social network application built with the mern stack for educational purposes.
 
