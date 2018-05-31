@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import InputGroup from '../common/InputGroup';
 import SelectListGroup from '../common/SelectListGroup';
+import { createProfile } from '../../actions/profileActions';
 
 class CreateProfile extends Component {
     constructor(props) {
@@ -33,22 +35,41 @@ class CreateProfile extends Component {
     }
 
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({ errors: nextProps.errors });
+        }
+    }
+
     onSubmit(event) {
         event.preventDefault();
 
-        console.log('submit');
-    }
+        const profileData = {
+            handle: this.state.handle,
+            company: this.state.company,
+            website: this.state.website,
+            location: this.state.location,
+            status: this.state.status,
+            skills: this.state.skills,
+            githubusername: this.state.githubusername,
+            bio: this.state.bio,
+            twitter: this.state.twitter,
+            facebook: this.state.facebook,
+            linkedin: this.state.linkedin,
+            youtube: this.state.youtube,
+            instagram: this.state.instagram
+        }
 
+        // Whenever call redux action, it is in the props
+        this.props.createProfile(profileData, this.props.history);
+    }
 
     onChange(event) {
         this.setState({ [event.target.name]: event.target.value });
     }
 
 
-
     render() {
-
-
         const { errors, displaySocialInputs } = this.state;
 
         let socialInputs;
@@ -142,7 +163,7 @@ class CreateProfile extends Component {
                                     info="Give us an idea of where you are at in your career"
                                 />
                                 <TextFieldGroup
-                                    placeholder="Company *"
+                                    placeholder="Company"
                                     name="company"
                                     value={this.state.company}
                                     onChange={this.onChange}
@@ -150,7 +171,7 @@ class CreateProfile extends Component {
                                     info="Could be your own company or one you work for."
                                 />
                                 <TextFieldGroup
-                                    placeholder="Website *"
+                                    placeholder="Website"
                                     name="website"
                                     value={this.state.website}
                                     onChange={this.onChange}
@@ -158,7 +179,7 @@ class CreateProfile extends Component {
                                     info="Could be your own website or a company one."
                                 />
                                 <TextFieldGroup
-                                    placeholder="Location *"
+                                    placeholder="Location"
                                     name="location"
                                     value={this.state.location}
                                     onChange={this.onChange}
@@ -167,14 +188,14 @@ class CreateProfile extends Component {
                                 />
                                 <TextFieldGroup
                                     placeholder="Skills *"
-                                    name="Skills"
-                                    value={this.state.Skills}
+                                    name="skills"
+                                    value={this.state.skills}
                                     onChange={this.onChange}
-                                    error={errors.Skills}
+                                    error={errors.skills}
                                     info="Please use comma separated values (e.g. HTML,CSS,JavaScript,PHP"
                                 />
                                 <TextFieldGroup
-                                    placeholder="Github Username *"
+                                    placeholder="Github Username"
                                     name="githubusername"
                                     value={this.state.githubusername}
                                     onChange={this.onChange}
@@ -191,11 +212,13 @@ class CreateProfile extends Component {
                                 />
 
                                 <div className="mb-3">
-                                    <button onClick={() => {
-                                        this.setState(prevState => ({
-                                            displaySocialInputs: !prevState.displaySocialInputs
-                                        }))
-                                    }} className="btn btn-light">
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            this.setState(prevState => ({
+                                                displaySocialInputs: !prevState.displaySocialInputs
+                                            }))
+                                        }} className="btn btn-light">
                                         Add Social Network Links
                                     </button>
                                     <span className="text-muted ml-2">Optional</span>
@@ -223,4 +246,4 @@ const mapStateToProps = state => ({
     errors: state.errors
 })
 
-export default connect(mapStateToProps)(CreateProfile);
+export default connect(mapStateToProps, { createProfile })(withRouter(CreateProfile));
