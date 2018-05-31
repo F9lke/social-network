@@ -1,6 +1,6 @@
 # Social Network Application
 
-A social network application built with the mern stack for educational purposes.
+A social network application built with the mern stack for educational purposes. Please note, that this project is a part of the 'MERN Stack Front To Back' course with numerous additions by me.
 
 ## Getting Started
 
