@@ -20,6 +20,7 @@ const TextFieldGroup = ({
                 className={classnames('form-control form-control-lg', {
                     'is-invalid': error
                 })}
+                autoComplete="off"
                 placeholder={placeholder}
                 name={name}
                 value={value}
