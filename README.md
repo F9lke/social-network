@@ -52,7 +52,8 @@ The installation on a live system does not differ much from the deployment on a 
 * [react-redux](https://github.com/reduxjs/react-redux) - used for better Redux-ReactJS compatibility
 * [bcryptjs](https://github.com/dcodeIO/bcrypt.js) - Encryption system used
 * [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) and
-* [passport]() used for authentication system
+* [passport](https://github.com/jaredhanson/passport) used for authentication system
+* [react-moment](https://github.com/headzoo/react-moment) used for time handling
 * [Gravatar](https://en.gravatar.com/) - Avatar system used
 
 
