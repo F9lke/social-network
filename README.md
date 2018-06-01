@@ -8,7 +8,7 @@ These instructions will get you the latest version of this project up and runnin
 
 ### Prerequesites
 
-* **[NodeJS](https://nodejs.org/en/)** - A recent version of NodeJS, preferably PHP 8.11.2 or higher
+* **[NodeJS](https://nodejs.org/en/)** - A recent version of NodeJS, preferably version 8.11.2 or higher
 * **MongoDB Instance** - [mlab](https://mlab.com/) is recommended
 
 ### Installing
