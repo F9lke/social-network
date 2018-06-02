@@ -11,11 +11,10 @@ import store from './store';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
-
-import PrivateRoute from './components/common/PrivateRoute';
-
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
+
+import PrivateRoute from './components/common/PrivateRoute';
 
 import Dashboard from './components/dashboard/Dashboard';
 
@@ -24,6 +23,8 @@ import EditProfile from './components/edit-profile/EditProfile';
 
 import AddExperience from './components/add-credentials/AddExperience';
 import AddEducation from './components/add-credentials/AddEducation';
+
+import Profiles from './components/profiles/Profiles';
 
 import './App.css';
 
@@ -65,6 +66,7 @@ class App extends Component {
 
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
+              <Route exact path="/profiles" component={Profiles} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
