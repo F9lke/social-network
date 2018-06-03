@@ -30,6 +30,8 @@ module.exports = {
 }
 ```
 
+After setting up your database connection, the next lines of code you manually have to add are located in ```client/src/components/profile/ProfileGithub.js```; In order to use the 'latest Github repository' functionality showing off under the respective profiles, you have to add your Client ID and Client Secret of the Github API. Please note, that this project is open sourced, but still aims to be used privately. That is why, you have to register your own application on Github to get these credentials. 
+
 
 ### Known Bugs
 
