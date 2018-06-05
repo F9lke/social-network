@@ -21,7 +21,7 @@ After forfilling the prerequesites mentioned above, the project can be cloned wi
 git clone https://github.com/F9lke/social-network
 ```
 
-Thanks to the use of MongoDB, it is not necessary to manually create the database structure. In order to make this database system work on the other hand, you have to create a file called "keys_dev.js" inside the folder "config" with the following code:
+Thanks to the use of MongoDB, it is not necessary to manually create the database structure. In order to make this database system work on the other hand, you will have to create a file called "keys_dev.js" inside the folder "config" with the following code:
 
 ```
 module.exports = {
@@ -45,6 +45,8 @@ Please notice, that this project is both under development and still in a very e
 ## Deployment
 
 The installation on a live system does not differ much from the deployment on a local mashine. See installation for further notes.
+
+The biggest and only difference is that you have to manually have to run the build command and/or postbuild command using npm.
 
 
 ## Built With
