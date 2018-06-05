@@ -1,4 +1,3 @@
 /node_modules
 package-lock.json
-config/keys.js
-client/src/components/profile/ProfileGithub.js
+/config/keys_dev.js
