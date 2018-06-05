@@ -21,12 +21,12 @@ After forfilling the prerequesites mentioned above, the project can be cloned wi
 git clone https://github.com/F9lke/social-network
 ```
 
-Thanks to the use of MongoDB, it is not necessary to manually create the database structure. In order to make this database system work on the other hand, you have to create a file called "keys.js" inside the folder "config" with the following code:
+Thanks to the use of MongoDB, it is not necessary to manually create the database structure. In order to make this database system work on the other hand, you have to create a file called "keys_dev.js" inside the folder "config" with the following code:
 
 ```
 module.exports = {
     mongoURI: 'YOUR MONGODB URI',
-    secretOrKey: 'secret'
+    secretOrKey: 'YOUR SECRET'
 }
 ```
 
