@@ -1,10 +1,14 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import classnames from 'classnames';
-import setExcerpt from '../../utils/setExcerpt';
-import { Link } from 'react-router-dom';
-import { deleteNewsArticle, addLikeNewsArticle, removeLikeNewsArticle } from '../../actions/newsActions';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import classnames from "classnames";
+import setExcerpt from "../../utils/setExcerpt";
+import { Link } from "react-router-dom";
+import {
+    deleteNewsArticle,
+    addLikeNewsArticle,
+    removeLikeNewsArticle
+} from "../../actions/newsActions";
 
 class NewsArticle extends Component {
     constructor(props) {
@@ -39,7 +43,11 @@ class NewsArticle extends Component {
 
     render() {
         const { article, auth, showActions, excerptLength } = this.props;
-        const information = setExcerpt(article.information, excerptLength)
+        const information = setExcerpt(
+            article.information,
+            excerptLength,
+            "words"
+        );
 
         return (
             <div className="col-md-6">
@@ -48,40 +56,70 @@ class NewsArticle extends Component {
                         <div className="col-md-12">
                             <div className="container">
                                 <h3 className="mb-3">{article.title}</h3>
-                                <p className="lead">
-                                    {information}
-                                </p>
-                                {showActions ? (<span>
-                                    <button onClick={this.onLikeClick.bind(article._id)} type="button" className="btn btn-light mr-1">
-                                        <i className={classnames('fas fa-thumbs-up', {
-                                            'text-info': this.findUserLike(article.likes)
-                                        })}></i>
-                                        <span className="badge badge-light">{article.likes.length}</span>
-                                    </button>
-                                    <button onClick={this.onUnlikeClick.bind(article._id)} type="button" className="btn btn-light mr-1">
-                                        <i className="text-secondary fas fa-thumbs-down"></i>
-                                    </button>
-                                    <Link to={`/news/${article._id}`} className="btn btn-info mr-1">
-                                        Comments
-                                    </Link>
-                                    {article.user === auth.user.id ? (
-                                        <button onClick={this.onDeleteClick.bind(article._id)} type="button" className="btn btn-danger mr-1">
-                                            <i className="fas fa-times" />
+                                <p className="lead">{information}</p>
+                                {showActions ? (
+                                    <span>
+                                        <button
+                                            onClick={this.onLikeClick.bind(
+                                                article._id
+                                            )}
+                                            type="button"
+                                            className="btn btn-light mr-1"
+                                        >
+                                            <i
+                                                className={classnames(
+                                                    "fas fa-thumbs-up",
+                                                    {
+                                                        "text-info": this.findUserLike(
+                                                            article.likes
+                                                        )
+                                                    }
+                                                )}
+                                            />
+                                            <span className="badge badge-light">
+                                                {article.likes.length}
+                                            </span>
                                         </button>
-                                    ) : (null)}
-                                </span>) : null}
+                                        <button
+                                            onClick={this.onUnlikeClick.bind(
+                                                article._id
+                                            )}
+                                            type="button"
+                                            className="btn btn-light mr-1"
+                                        >
+                                            <i className="text-secondary fas fa-thumbs-down" />
+                                        </button>
+                                        <Link
+                                            to={`/news/${article._id}`}
+                                            className="btn btn-info mr-1"
+                                        >
+                                            Read More
+                                        </Link>
+                                        {article.user === auth.user.id ? (
+                                            <button
+                                                onClick={this.onDeleteClick.bind(
+                                                    article._id
+                                                )}
+                                                type="button"
+                                                className="btn btn-danger mr-1"
+                                            >
+                                                <i className="fas fa-times" />
+                                            </button>
+                                        ) : null}
+                                    </span>
+                                ) : null}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 
 NewsArticle.defaultProps = {
     showActions: true
-}
+};
 
 NewsArticle.propTypes = {
     addLikeNewsArticle: PropTypes.func.isRequired,
@@ -90,10 +128,13 @@ NewsArticle.propTypes = {
     article: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     showActions: PropTypes.bool
-}
+};
 
 const mapStateToProps = state => ({
     auth: state.auth
-})
+});
 
-export default connect(mapStateToProps, { deleteNewsArticle, addLikeNewsArticle, removeLikeNewsArticle })(NewsArticle);
+export default connect(
+    mapStateToProps,
+    { deleteNewsArticle, addLikeNewsArticle, removeLikeNewsArticle }
+)(NewsArticle);
