@@ -32,26 +32,26 @@ export const addNewsArticle = articleData => dispatch => {
 
 // Get Articles
 export const getNewsArticles = () => dispatch => {
-    dispatch(setArticleLoading());
+    dispatch(setArticleLoading);
     axios
         .get('/api/news')
         .then(res =>
             dispatch({
                 type: GET_NEWS_ARTICLES,
-                payload: null
+                payload: res.data
             })
         )
         .catch(err =>
             dispatch({
                 type: GET_NEWS_ARTICLES,
-                payload: err.response.data
+                payload: null
             })
         )
 };
 
 // Get Article
 export const getNewsArticle = id => dispatch => {
-    dispatch(setArticleLoading());
+    dispatch(setArticleLoading);
     axios
         .get(`/api/news/${id}`)
         .then(res =>
