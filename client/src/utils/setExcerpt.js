@@ -1,6 +1,6 @@
 import getScriptName from "./getScriptName";
 
-const setExcerpt = (text, length, method = "characters") => {
+const setExcerpt = (text, length, method = "words") => {
     if (typeof text === "string" && text.trim().length > 0) {
         switch (method) {
             case "characters":
