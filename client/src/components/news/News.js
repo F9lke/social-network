@@ -11,13 +11,18 @@ class News extends Component {
     }
 
     render() {
-        const { loading } = this.props.news;
+        const { loading, articles } = this.props.news;
         let newsContent;
 
         if (newsContent === null || loading) {
             newsContent = <Spinner />
         } else {
-            newsContent = <NewsFeed news={this.props.news} />
+            //newsContent = <NewsFeed news={this.props.news} />
+            if (articles.length > 0) {
+                newsContent = <NewsFeed news={this.props.news} />
+            } else {
+                newsContent = <h4>No articles found...</h4>;
+            }
         }
 
         return (
@@ -25,6 +30,12 @@ class News extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12">
+                            <h1 className="display-4 text-center">
+                                News Articles
+                            </h1>
+                            <p className="lead text-center mb-5">
+                                Read the latest articles
+                            </p>
                             {newsContent}
                         </div>
                     </div>

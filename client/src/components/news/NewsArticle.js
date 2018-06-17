@@ -20,8 +20,8 @@ class NewsArticle extends Component {
         this.findUserLike = this.findUserLike.bind(this);
     }
 
-    onDeleteClick(id) {
-        this.props.deleteNewsArticle(id);
+    onDeleteClick(id = this.props.article._id) {
+        this.props.deleteNewsArticle(this.props.article._id);
     }
 
     onLikeClick(id = this.props.article._id) {
@@ -43,6 +43,8 @@ class NewsArticle extends Component {
 
     render() {
         const { article, auth, showActions, excerptLength } = this.props;
+        const { permission } = auth.user;
+
         const information = setExcerpt(
             article.information,
             excerptLength,
@@ -50,7 +52,7 @@ class NewsArticle extends Component {
         );
 
         return (
-            <div className="col-md-6">
+            <div className="col-md-12">
                 <div className="card card-body mb-3">
                     <div className="row">
                         <div className="col-md-12">
@@ -95,7 +97,7 @@ class NewsArticle extends Component {
                                         >
                                             Read More
                                         </Link>
-                                        {article.user === auth.user.id ? (
+                                        {permission === 'admin' ? (
                                             <button
                                                 onClick={this.onDeleteClick.bind(
                                                     article._id

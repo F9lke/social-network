@@ -14,6 +14,7 @@ class Navbar extends Component {
 
     render() {
         const { isAuthenticated, user } = this.props.auth;
+        const { permission } = user;
 
         const authLinks = (
             <ul className="navbar-nav ml-auto">
@@ -50,6 +51,23 @@ class Navbar extends Component {
             </ul>
         );
 
+        const adminNews = (
+            <li className="nav-item dropdown">
+                <a className="dropdown-toggle nav-link" data-toggle="dropdown" href="">News
+                <span className="caret"></span></a>
+                <ul className="dropdown-menu">
+                    <li><Link to="/news" className="nav-link text-dark mx-auto p-auto">News Feed</Link></li>
+                    <li><Link to="/news/write" className="nav-link text-dark mx-auto p-auto">Write Article</Link></li>
+                </ul>
+            </li>
+        )
+
+        const userNews = (
+            <li className="nav-item">
+                <Link className="nav-link" to="/news">News</Link>
+            </li>
+        )
+
         return (
             <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
                 <div className="container">
@@ -66,9 +84,7 @@ class Navbar extends Component {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/profiles">Developers</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/news">News</Link>
-                            </li>
+                            {permission === 'admin' ? adminNews : userNews}
                         </ul>
 
                         {isAuthenticated ? authLinks : guestLinks}

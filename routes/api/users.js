@@ -93,17 +93,17 @@ router.post('/login', (req, res) => {
                 .then(isMatch => {
                     if (isMatch) {
                         // User Matched
-                        const payload = { id: user.id, name: user.name, avatar: user.avatar }; // Create JWT Payload
+                        const payload = { id: user.id, name: user.name, permission: user.permission, avatar: user.avatar }; // Create JWT Payload
 
                         // Sign User
                         jwt.sign(
                             payload,
                             keys.secretOrKey,
-                            { expiresIn: 3600 },
+                            { expiresIn: 86000 },
                             (err, token) => {
                                 res.json({
                                     success: true,
-                                    token: 'Bearer ' + token // Bearer = type of token used
+                                    token: 'Bearer ' + token
                                 });
                             });
                     } else {

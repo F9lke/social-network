@@ -8,8 +8,8 @@ module.exports = function validateNewsInput(data) {
     data.information = !isEmpty(data.information) ? data.information : '';
 
 
-    if (!Validator.isLength(data.title, { min: 5, max: 15 })) {
-        errors.title = 'title must be between 5 and 15 characters';
+    if (!Validator.isLength(data.title, { min: 5, max: 30 })) {
+        errors.title = 'title must be between 5 and 30 characters';
     }
     if (Validator.isEmpty(data.title)) {
         errors.title = 'Title field is required';
