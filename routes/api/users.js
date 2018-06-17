@@ -126,6 +126,48 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
     });
 });
 
+// @route  POST api/users/setAdmin/:id
+// @desc   Set User Admin
+// @access Private
+router.post('/setAdmin/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+    User.findById(req.params.id)
+        .then(user => {
+            if (req.user.permission !== 'admin') {
+                return res.status(400).json({ unauthorized: "You are not authorized to perform this action" });
+            }
+            if (user.permission === 'admin') {
+                return res.status(400).json({ alreadyadmin: "This user is already an administrator" });
+            }
+            user.permission = 'admin';
+            user.save()
+                .then(user => {
+                    return res.json(user);
+                })
+                .catch(err => res.status(400).json(err));
+        })
+        .catch(err => res.status(404).json({ usernotfound: "No user found with the corresponding id" }));
+})
 
+// @route  POST api/users/setUser/:id
+// @desc   Set User user
+// @access Private
+router.post('/setUser/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+    User.findById(req.params.id)
+        .then(user => {
+            if (req.user.permission !== 'admin') {
+                return res.status(400).json({ unauthorized: "You are not authorized to perform this action" });
+            }
+            if (user.permission === 'user') {
+                return res.status(400).json({ alreadyuser: "This user already has the regular user permission" });
+            }
+            user.permission = 'user';
+            user.save()
+                .then(user => {
+                    return res.json(user);
+                })
+                .catch(err => res.status(400).json(err));
+        })
+        .catch(err => res.status(404).json({ usernotfound: "No user found with the corresponding id" }));
+})
 
 module.exports = router;
