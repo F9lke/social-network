@@ -92,7 +92,7 @@ class NewsArticle extends Component {
                                             <i className="text-secondary fas fa-thumbs-down" />
                                         </button>
                                         <Link
-                                            to={`/news/${article._id}`}
+                                            to={`/news/article/${article._id}`}
                                             className="btn btn-info mr-1"
                                         >
                                             Read More

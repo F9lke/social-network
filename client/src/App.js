@@ -26,6 +26,7 @@ import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
 import News from './components/news/News';
 import NewsAdmin from './components/news/NewsAdmin';
+import SingelArticle from './components/news/SingleArticle';
 
 import './App.css';
 
@@ -70,6 +71,7 @@ class App extends Component {
 							<Route exact path="/profiles" component={Profiles} />
 							<Route exact path="/profile/:handle" component={Profile} />
 							<Route exact path="/news" component={News} />
+							<Route exact path="/news/article/:id" component={SingelArticle} />
 
 							<Switch>
 								<PrivateRoute exact path="/dashboard" component={Dashboard} />

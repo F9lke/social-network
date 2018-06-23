@@ -29,6 +29,7 @@ class WriteArticle extends Component {
         event.preventDefault();
 
         const { user } = this.props.auth;
+        const { errors } = this.state;
 
         const newArticle = {
             title: this.state.title,
@@ -38,7 +39,10 @@ class WriteArticle extends Component {
         }
 
         this.props.addNewsArticle(newArticle);
-        this.setState({ title: '', text: '', published: newArticle });
+        this.setState({ title: '', text: '' });
+        if (errors === null || Object.keys(errors).length === 0) {
+            this.setState({ published: newArticle });
+        }
     }
 
     onChange(event) {

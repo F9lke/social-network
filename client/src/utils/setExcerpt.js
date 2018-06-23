@@ -41,7 +41,7 @@ const setExcerpt = (text, length, method = "words") => {
 
             default:
                 throw new Error(
-                    `Void was given to param 'method' in function ${
+                    `Void was passed to param 'method' in function ${
                     arguments.callee.name
                     } in ${getScriptName()}`
                 );
@@ -50,7 +50,7 @@ const setExcerpt = (text, length, method = "words") => {
         throw new Error("Can't create an excerpt from an object.");
     } else if (typeof text === "string" && text.trim().length === 0) {
         throw new Error(
-            `Void was given to function ${
+            `Void was passed to function ${
             arguments.callee.name
             } in ${getScriptName()}`
         );
